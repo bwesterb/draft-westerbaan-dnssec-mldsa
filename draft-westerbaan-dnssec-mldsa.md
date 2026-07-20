@@ -269,5 +269,4 @@ algorithm with Transaction Security.
 # Acknowledgments
 {:numbered="false"}
 
-Some of the material in this document is copied liberally from
-{{RFC6605}} and RFC 8080 (EdDSA for DNSSEC).
+TODO
