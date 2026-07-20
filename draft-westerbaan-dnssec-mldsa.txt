@@ -346,8 +346,7 @@ example.com. 3600 IN RRSIG MX 18 3 3600 (
 
 Acknowledgments
 
-   Some of the material in this document is copied liberally from
-   [RFC6605] and RFC 8080 (EdDSA for DNSSEC).
+   TODO
 
 Author's Address
 
