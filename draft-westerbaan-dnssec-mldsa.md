@@ -234,12 +234,27 @@ example.com. 3600 IN RRSIG MX 18 3 3600 (
 
 # Security Considerations
 
+## ML-DSA
 The security considerations of {{FIPS204}} apply.
 
 In particular sections 3.4 and 3.6 of {{FIPS204}} discuss additional
 considerations for implementing ML-DSA, including guidance on the
 choice of hedged vs deterministic variants. These considerations
 apply when ML-DSA is used for DNSSEC and especially during online signing.
+
+## Downgrades
+
+Under the existing multi-algorithm rules (Section 2.2 of {{RFC4035}}
+and Section 5.11 of {{RFC6840}}) a validator accepts any single valid path.
+Thus a quantum attacker can strip ML-DSA-44 RRSIGs from a zone signed
+both by ML-DSA-44 and a classical algorithm.
+
+To achieve post-quantum security with the present rules, a zone can either
+only sign with ML-DSA-44, or validators can disable all classical algorithms.
+
+[[ NOTE. Ideally we update the RFC to allow and recommend validators
+to insist on PQ RRSIGs if there there is a DS that indicated they
+should be available. ]]
 
 # IANA Considerations
 
