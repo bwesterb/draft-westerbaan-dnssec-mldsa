@@ -1177,6 +1177,14 @@ of a cryptographically relevant quantum computer.<a href="#section-abstract-1" c
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-ml-dsa" class="internal xref">ML-DSA</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-downgrades" class="internal xref">Downgrades</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
@@ -1403,11 +1411,34 @@ example.com. 3600 IN RRSIG MX 18 3 3600 (
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">The security considerations of <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> apply.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">In particular sections 3.4 and 3.6 of <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> discuss additional
+<div id="ml-dsa">
+<section id="section-7.1">
+        <h3 id="name-ml-dsa">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-ml-dsa" class="section-name selfRef">ML-DSA</a>
+        </h3>
+<p id="section-7.1-1">The security considerations of <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> apply.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">In particular sections 3.4 and 3.6 of <span>[<a href="#FIPS204" class="cite xref">FIPS204</a>]</span> discuss additional
 considerations for implementing ML-DSA, including guidance on the
 choice of hedged vs deterministic variants. These considerations
-apply when ML-DSA is used for DNSSEC and especially during online signing.<a href="#section-7-2" class="pilcrow">¶</a></p>
+apply when ML-DSA is used for DNSSEC and especially during online signing.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="downgrades">
+<section id="section-7.2">
+        <h3 id="name-downgrades">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-downgrades" class="section-name selfRef">Downgrades</a>
+        </h3>
+<p id="section-7.2-1">Under the existing multi-algorithm rules (Section 2.2 of <span>[<a href="#RFC4035" class="cite xref">RFC4035</a>]</span>
+and Section 5.11 of <span>[<a href="#RFC6840" class="cite xref">RFC6840</a>]</span>) a validator accepts any single valid path.
+Thus a quantum attacker can strip ML-DSA-44 RRSIGs from a zone signed
+both by ML-DSA-44 and a classical algorithm.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.2-2">To achieve post-quantum security with the present rules, a zone can either
+only sign with ML-DSA-44, or validators can disable all classical algorithms.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+<p id="section-7.2-3">[[ NOTE. Ideally we update the RFC to allow and recommend validators
+to insist on PQ RRSIGs if there there is a DS that indicated they
+should be available. ]]<a href="#section-7.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1529,8 +1560,12 @@ algorithm with Transaction Security.<a href="#section-8-3" class="pilcrow">¶</a
         </h3>
 <dl class="references">
 <dt id="RFC6605">[RFC6605]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">W.C.A. Wijngaards</span>, <span class="refTitle">"Elliptic Curve Digital Signature Algorithm (DSA) for DNSSEC"</span>, <span class="seriesInfo">RFC 6605</span>, <span class="seriesInfo">DOI 10.17487/RFC6605</span>, <time datetime="2012-04" class="refDate">April 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6605">https://www.rfc-editor.org/rfc/rfc6605</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6840">[RFC6840]</dt>
+      <dd>
+<span class="refAuthor">Weiler, S., Ed.</span> and <span class="refAuthor">D. Blacka, Ed.</span>, <span class="refTitle">"Clarifications and Implementation Notes for DNS Security (DNSSEC)"</span>, <span class="seriesInfo">RFC 6840</span>, <span class="seriesInfo">DOI 10.17487/RFC6840</span>, <time datetime="2013-02" class="refDate">February 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6840">https://www.rfc-editor.org/rfc/rfc6840</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
