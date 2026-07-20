@@ -19,12 +19,12 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "Module-Lattice Digital Signature Scheme for DNSSEC"
+abbrev: "MLDSA for DNSSEC"
 category: info
 
-docname: draft-todo-yourname-protocol-latest
-submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+docname: draft-westerbaan-dnssec-mldsa-latest
+submissiontype: IETF
 number:
 date:
 consensus: true
@@ -32,9 +32,7 @@ v: 3
 area: AREA
 workgroup: WG Working Group
 keyword:
- - next generation
- - unicorn
- - AI-native
+ - bla
 venue:
   group: WG
   type: Working Group
@@ -45,9 +43,10 @@ venue:
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+    ins: B.E. Westerbaan
+    fullname: Bas Westerbaan
+    organization: Cloudflare
+    email: bas@cloudflare.com
 
 normative:
 
