@@ -9,17 +9,17 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Security"
+workgroup: "Domain Name System Security"
 keyword:
  - bla
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Domain Name System Security"
+  type: "Working Group"
+  mail: "dns-security@lists.tislabs.com"
+  arch: "ftp://ftp.tis.com/pub/lists/dns-security"
+  github: "bwesterb/draft-westerbaan-dnssec-mldsa"
+  latest: "https://bwesterb.github.io/draft-westerbaan-dnssec-mldsa/draft-westerbaan-dnssec-mldsa.html"
 
 author:
  -
