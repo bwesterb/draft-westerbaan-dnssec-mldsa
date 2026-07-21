@@ -37,6 +37,7 @@ from dilithium_py.ml_dsa import ML_DSA_44
 
 # DNSSEC algorithm number used for these vectors (placeholder for IANA TBD).
 ALGORITHM = 18
+MNEMONIC = "MLDSA44"
 
 # Fixed 32-byte key-generation seed (xi), so the key pair is reproducible.
 SEED = bytes.fromhex(
@@ -45,6 +46,9 @@ SEED = bytes.fromhex(
 
 # Reuse the RFC 8080 example scaffolding.
 ZONE = "example.com."
+TTL = 3600
+MX_RDATA = "10 mail.example.com."
+DS_DIGEST = "SHA256"     # DS digest algorithm; its DNSSEC number is derived, not hardcoded
 INCEPTION = 1438207200   # 20150729223000
 EXPIRATION = 1440021600  # 20150819223000
 
@@ -118,13 +122,8 @@ class PrivateMLDSA44(GenericPrivateKey):
         raise NotImplementedError
 
 
-def wrap(b64: str) -> str:
-    return "\n             ".join(textwrap.wrap(b64, 60))
-
-
-def rdata_b64(rdata) -> str:
-    # Presentation form of the record with the base64 blob wrapped.
-    return rdata
+def wrap(blob: str) -> str:
+    return "\n             ".join(textwrap.wrap(blob, 60))
 
 
 def main() -> None:
@@ -145,10 +144,10 @@ def main() -> None:
         pub, algorithm=ALGORITHM, flags=Flag.ZONE | Flag.SEP
     )
     ds = dns.dnssec.make_ds(
-        name, dnskey, "SHA256", policy=dns.dnssec.allow_all_policy
+        name, dnskey, DS_DIGEST, policy=dns.dnssec.allow_all_policy
     )
 
-    mx = dns.rrset.from_text(ZONE, 3600, "IN", "MX", "10 mail.example.com.")
+    mx = dns.rrset.from_text(ZONE, TTL, "IN", "MX", MX_RDATA)
 
     rrsig = dns.dnssec.sign(
         rrset=mx,
@@ -162,8 +161,8 @@ def main() -> None:
     )
 
     # Self-validate via dnspython (verification path uses cryptography).
-    dnskey_rrset = dns.rrset.from_rdata(name, 3600, dnskey)
-    rrsig_rrset = dns.rrset.from_rdata(name, 3600, rrsig)
+    dnskey_rrset = dns.rrset.from_rdata(name, TTL, dnskey)
+    rrsig_rrset = dns.rrset.from_rdata(name, TTL, rrsig)
     dns.dnssec.validate(
         mx,
         rrsig_rrset,
@@ -173,23 +172,39 @@ def main() -> None:
     )
     print("; validation OK (dnspython + cryptography)\n")
 
-    key_tag = dns.dnssec.key_id(dnskey)
+    # Everything below is read back from the signed/computed objects, so the
+    # printed presentation cannot drift from what was actually signed. The
+    # only literals are the owner name, class, TTL, and the algorithm mnemonic
+    # (a cosmetic label that is not part of any signed data).
+    owner = name.to_text()
 
     print("Private-key-format: v1.3")
-    print(f"Algorithm: {ALGORITHM} (MLDSA44)")
+    print(f"Algorithm: {int(dnskey.algorithm)} ({MNEMONIC})")
     print(f"PrivateKey: {base64.b64encode(SEED).decode()}\n")
 
-    print(f"; key tag = {key_tag}")
-    print(f"{ZONE} 3600 IN DNSKEY 257 3 {ALGORITHM} (")
+    print(f"; key tag = {dns.dnssec.key_id(dnskey)}")
+    print(
+        f"{owner} {TTL} IN DNSKEY "
+        f"{int(dnskey.flags)} {int(dnskey.protocol)} {int(dnskey.algorithm)} ("
+    )
     print(f"             {wrap(base64.b64encode(dnskey.key).decode())} )\n")
 
-    print(f"{ZONE} 3600 IN DS {key_tag} {ALGORITHM} 2 (")
+    print(
+        f"{owner} {TTL} IN DS "
+        f"{int(ds.key_tag)} {int(ds.algorithm)} {int(ds.digest_type)} ("
+    )
     print(f"             {wrap(ds.digest.hex())} )\n")
 
-    print(f"{ZONE} 3600 IN MX 10 mail.example.com.\n")
+    print(f"{owner} {mx.ttl} IN MX {mx[0].to_text()}\n")
 
-    print(f"{ZONE} 3600 IN RRSIG MX {ALGORITHM} {rrsig.labels} {rrsig.original_ttl} (")
-    print(f"             {EXPIRATION} {INCEPTION} {key_tag} {ZONE} (")
+    print(
+        f"{owner} {TTL} IN RRSIG {dns.rdatatype.to_text(rrsig.type_covered)} "
+        f"{int(rrsig.algorithm)} {int(rrsig.labels)} {int(rrsig.original_ttl)} ("
+    )
+    print(
+        f"             {int(rrsig.expiration)} {int(rrsig.inception)} "
+        f"{int(rrsig.key_tag)} {rrsig.signer}"
+    )
     print(f"             {wrap(base64.b64encode(rrsig.signature).decode())} )")
 
 
