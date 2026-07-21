@@ -188,7 +188,7 @@ def main() -> None:
 
     print(f"{ZONE} 3600 IN MX 10 mail.example.com.\n")
 
-    print(f"{ZONE} 3600 IN RRSIG MX {ALGORITHM} 3 3600 (")
+    print(f"{ZONE} 3600 IN RRSIG MX {ALGORITHM} {rrsig.labels} {rrsig.original_ttl} (")
     print(f"             {EXPIRATION} {INCEPTION} {key_tag} {ZONE} (")
     print(f"             {wrap(base64.b64encode(rrsig.signature).decode())} )")
 
