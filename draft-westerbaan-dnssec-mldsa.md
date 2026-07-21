@@ -31,6 +31,10 @@ author:
     fullname: Bas Westerbaan
     organization: Cloudflare
     email: bas@cloudflare.com
+ -
+    fullname: "Sophie Schmieg"
+    organization: Google
+    email: sschmieg@google.com
 
 normative:
   RFC4033:
