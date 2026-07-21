@@ -286,9 +286,10 @@ example.com. 3600 IN RRSIG MX 18 3 3600 (
    This does not apply if the validator does not accept any quantum-
    vulnerable algorithms or if the zone is only signed by ML-DSA-44.
 
-      |  NOTE.  Ideally we update RFC6840 to recommend validators to
-      |  insist on PQ RRSIGs if there there is a DS that indicated they
-      |  should be available.
+      |  _Note to editor_: remove this remark before publication.
+      |  Remark: Ideally we update RFC6840 in a different document to
+      |  recommend validators to insist on PQ RRSIGs if there there is a
+      |  DS that indicated they should be available.
 
 8.  IANA Considerations
 
