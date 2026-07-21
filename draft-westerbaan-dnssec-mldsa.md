@@ -259,8 +259,9 @@ This does not apply if the validator does not accept any quantum-vulnerable
 algorithms or if the zone is only signed by ML-DSA-44.
 
 {:aside}
-> NOTE. Ideally we update RFC6840 to recommend validators to insist on
-> PQ RRSIGs if there there is a DS that indicated they should be available.
+> *Note to editor*: remove this remark before publication. Remark: Ideally
+> we update RFC6840 in a different document to recommend validators to
+> insist on PQ RRSIGs if there there is a DS that indicated they should be available.
 
 # IANA Considerations
 
