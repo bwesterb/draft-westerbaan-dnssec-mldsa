@@ -4,8 +4,9 @@
 
 Domain Name System Operations                           B. E. Westerbaan
 Internet-Draft                                                Cloudflare
-Intended status: Standards Track                            20 July 2026
-Expires: 21 January 2027
+Intended status: Standards Track                              S. Schmieg
+Expires: 22 January 2027                                          Google
+                                                            21 July 2026
 
 
          Module-Lattice Digital Signature Algorithm for DNSSEC
@@ -52,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 January 2027.
+   This Internet-Draft will expire on 22 January 2027.
 
 Copyright Notice
 
@@ -84,7 +85,7 @@ Table of Contents
      9.1.  Normative References
      9.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -372,8 +373,13 @@ Acknowledgments
 
    TODO
 
-Author's Address
+Authors' Addresses
 
    Bas Westerbaan
    Cloudflare
    Email: bas@cloudflare.com
+
+
+   Sophie Schmieg
+   Google
+   Email: sschmieg@google.com
