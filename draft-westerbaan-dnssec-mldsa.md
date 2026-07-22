@@ -123,7 +123,7 @@ in Section 3.1.8.1 of {{RFC4034}}.
 # Algorithm Number for DS, DNSKEY, and RRSIG Resource Records
 
 The algorithm number associated with the use of ML-DSA-44 in DS, DNSKEY,
-and RRSIG resource records is 18 (please).  This registration is fully defined
+and RRSIG resource records is TBD1.  This registration is fully defined
 in the IANA Considerations section.
 
 # Examples
@@ -135,6 +135,10 @@ shown in the PrivateKey field, and the signature was produced using the
 deterministic variant of ML-DSA (rnd set to all zeroes) so that the
 example is byte-for-byte reproducible.  Because of the size of ML-DSA-44
 keys and signatures, the base64-encoded values are wrapped.
+
+{:aside}
+> *Warning*: Test vectors provisionally use 18 for the algorithm number. Will
+> be updated with the number IANA allocates.
 
 ~~~
 Private-key-format: v1.3
@@ -271,7 +275,7 @@ registry:
 
 | Field                          | Value           |
 |--------------------------------|-----------------|
-| Number                         | 18 (please)     |
+| Number                         | TBD1            |
 | Description                    | ML-DSA-44       |
 | Mnemonic                       | MLDSA44         |
 | Zone Signing                   | Y               |
