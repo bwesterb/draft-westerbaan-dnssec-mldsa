@@ -167,7 +167,7 @@ Table of Contents
       |  number.  Will be updated with the number IANA allocates.
 
 Private-key-format: v1.3
-Algorithm: TBD1 (MLDSA44)
+Algorithm: 18 (MLDSA44)
 PrivateKey: AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=
 
 example.com. 3600 IN DNSKEY 257 3 18 (
