@@ -89,10 +89,9 @@ parameter sets: ML-DSA-44, ML-DSA-65, and ML-DSA-87.
 
 This document defines the use of DNSSEC's DS, DNSKEY, and RRSIG resource
 records (RRs) with the ML-DSA-44 parameter set.  ML-DSA-44 targets NIST
-security category 2, which equates to 160 bits of security classical
-and post-quantum security. ML-DSA-44 has the smallest keys and signatures
-of the three ML-DSA parameter sets, which makes it the most suitable
-for use in the DNS.
+security category 2, which is defined as the (quantum) collision resistance
+of SHA-256.  ML-DSA-44 has the smallest keys and signatures of the three
+ML-DSA parameter sets, which makes it the most suitable for use in the DNS.
 
 # Conventions and Definitions
 
@@ -259,13 +258,11 @@ if a zone is signed by ML-DSA-44 and a quantum-vulnerable algorithm,
 then a quantum attacker can strip the ML-DSA-44 signatures, and have the
 lenient validator accept the forged quantum-vulnerable signature.
 
-This does not apply if the validator does not accept any quantum-vulnerable
-algorithms or if the zone is only signed by ML-DSA-44.
-
-{:aside}
-> *Note to editor*: remove this remark before publication. Remark: Ideally
-> we update RFC6840 in a different document to recommend validators to
-> insist on PQ RRSIGs if there there is a DS that indicated they should be available.
+This does not apply if the lenient validator does not accept any
+quantum-vulnerable algorithms or if the zone is only signed by ML-DSA-44.
+A validator that insists on the presence of a valid ML-DSA-44 RRSIG
+when the availability is advertised in the zones DS, also evades the
+downgrade.
 
 # IANA Considerations
 
