@@ -5,8 +5,8 @@
 Domain Name System Operations                           B. E. Westerbaan
 Internet-Draft                                                Cloudflare
 Intended status: Standards Track                              S. Schmieg
-Expires: 23 January 2027                                          Google
-                                                            22 July 2026
+Expires: 12 February 2027                                         Google
+                                                          11 August 2026
 
 
          Module-Lattice Digital Signature Algorithm for DNSSEC
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 January 2027.
+   This Internet-Draft will expire on 12 February 2027.
 
 Copyright Notice
 
@@ -111,10 +111,14 @@ Table of Contents
 
    This document defines the use of DNSSEC's DS, DNSKEY, and RRSIG
    resource records (RRs) with the ML-DSA-44 parameter set.  ML-DSA-44
-   targets NIST security category 2, which equates to 160 bits of
-   security classical and post-quantum security.  ML-DSA-44 has the
-   smallest keys and signatures of the three ML-DSA parameter sets,
-   which makes it the most suitable for use in the DNS.
+   targets NIST security category 2, which is defined as the (quantum)
+   collision resistance of SHA-256.  ML-DSA-44 has the smallest keys and
+   signatures of the three ML-DSA parameter sets, which makes it the
+   most suitable for use in the DNS.
+
+      |  _Note_: The codepoint assigned by IANA refers to version 03 of
+      |  this document.  The present version of the document is
+      |  compatible: it defines the same codepoint.
 
 2.  Conventions and Definitions
 
@@ -149,8 +153,8 @@ Table of Contents
 5.  Algorithm Number for DS, DNSKEY, and RRSIG Resource Records
 
    The algorithm number associated with the use of ML-DSA-44 in DS,
-   DNSKEY, and RRSIG resource records is TBD1.  This registration is
-   fully defined in the IANA Considerations section.
+   DNSKEY, and RRSIG resource records is 18.  This registration is fully
+   defined in the IANA Considerations section.
 
 6.  Examples
 
@@ -162,9 +166,6 @@ Table of Contents
    zeroes) so that the example is byte-for-byte reproducible.  Because
    of the size of ML-DSA-44 keys and signatures, the base64-encoded
    values are wrapped.
-
-      |  _Warning_: Test vectors provisionally use 18 for the algorithm
-      |  number.  Will be updated with the number IANA allocates.
 
 Private-key-format: v1.3
 Algorithm: 18 (MLDSA44)
@@ -286,43 +287,41 @@ example.com. 3600 IN RRSIG MX 18 2 3600 (
    signatures, and have the lenient validator accept the forged quantum-
    vulnerable signature.
 
-   This does not apply if the validator does not accept any quantum-
-   vulnerable algorithms or if the zone is only signed by ML-DSA-44.
-
-      |  _Note to editor_: remove this remark before publication.
-      |  Remark: Ideally we update RFC6840 in a different document to
-      |  recommend validators to insist on PQ RRSIGs if there there is a
-      |  DS that indicated they should be available.
+   This does not apply if the lenient validator does not accept any
+   quantum-vulnerable algorithms or if the zone is only signed by ML-
+   DSA-44.  A validator that insists on the presence of a valid ML-
+   DSA-44 RRSIG when the availability is advertised in the zones DS,
+   also evades the downgrade.
 
 8.  IANA Considerations
 
-   This document updates the IANA registry "Domain Name System Security
-   (DNSSEC) Algorithm Numbers".  The following entry is to be added to
-   the registry:
+   IANA has added the following entry to the "Domain Name System
+   Security (DNSSEC) Algorithm Numbers" registry.
 
-           +=================================+=================+
-           | Field                           | Value           |
-           +=================================+=================+
-           | Number                          | TBD1            |
-           +---------------------------------+-----------------+
-           | Description                     | ML-DSA-44       |
-           +---------------------------------+-----------------+
-           | Mnemonic                        | MLDSA44         |
-           +---------------------------------+-----------------+
-           | Zone Signing                    | Y               |
-           +---------------------------------+-----------------+
-           | Trans.  Sec.                    | *               |
-           +---------------------------------+-----------------+
-           | Use for DNSSEC Signing          | MAY             |
-           +---------------------------------+-----------------+
-           | Use for DNSSEC Validation       | MAY             |
-           +---------------------------------+-----------------+
-           | Implement for DNSSEC Signing    | MAY             |
-           +---------------------------------+-----------------+
-           | Implement for DNSSEC Validation | MAY             |
-           +---------------------------------+-----------------+
-           | Reference                       | (this document) |
-           +---------------------------------+-----------------+
+    +==============================+==================================+
+    | Field                        | Value                            |
+    +==============================+==================================+
+    | Number                       | 18                               |
+    +------------------------------+----------------------------------+
+    | Description                  | ML-DSA-44                        |
+    +------------------------------+----------------------------------+
+    | Mnemonic                     | MLDSA44                          |
+    +------------------------------+----------------------------------+
+    | Zone Signing                 | Y                                |
+    +------------------------------+----------------------------------+
+    | Trans.  Sec.                 | *                                |
+    +------------------------------+----------------------------------+
+    | Use for DNSSEC Signing       | MAY                              |
+    +------------------------------+----------------------------------+
+    | Use for DNSSEC Validation    | MAY                              |
+    +------------------------------+----------------------------------+
+    | Implement for DNSSEC Signing | MAY                              |
+    +------------------------------+----------------------------------+
+    | Implement for DNSSEC         | MAY                              |
+    | Validation                   |                                  |
+    +------------------------------+----------------------------------+
+    | Reference                    | draft-westerbaan-dnssec-mldsa-03 |
+    +------------------------------+----------------------------------+
 
                  Table 1: New DNSSEC Algorithm Number entry
 
