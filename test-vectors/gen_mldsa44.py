@@ -3,7 +3,7 @@
 draft-westerbaan-dnssec-mldsa.
 
 This registers ML-DSA-44 into dnspython at runtime (no fork required) under
-DNSSEC algorithm number 18 (a placeholder for the requested IANA assignment).
+DNSSEC algorithm number 18.
 
 Keys are derived deterministically from a fixed 32-byte seed and signatures use
 the FIPS 204 deterministic variant (rnd = 0^256), so the emitted vectors are
@@ -35,7 +35,6 @@ from dns.rdtypes.dnskeybase import Flag
 from cryptography.hazmat.primitives.asymmetric import mldsa
 from dilithium_py.ml_dsa import ML_DSA_44
 
-# DNSSEC algorithm number used for these vectors (placeholder for IANA TBD).
 ALGORITHM = 18
 MNEMONIC = "MLDSA44"
 
