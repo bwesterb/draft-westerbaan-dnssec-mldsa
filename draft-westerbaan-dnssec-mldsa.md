@@ -251,6 +251,12 @@ considerations for implementing ML-DSA, including guidance on the
 choice of hedged vs deterministic variants. These considerations
 apply when ML-DSA is used for DNSSEC and especially during online signing.
 
+For algorithm 18 (MLDSA44), the DNSKEY Public Key field MUST be exactly 
+1312 octets, and the RRSIG Signature field MUST be exactly 2420 octets. 
+Signature verification MUST fail if either length is incorrect. 
+Validators MUST enforce all applicable decoding and verification 
+checks specified in {{FIPS204}}.
+
 ## Downgrades
 
 Section 5.11 of {{RFC6840}} recommends validators to accept any single
