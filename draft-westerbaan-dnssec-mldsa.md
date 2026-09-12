@@ -262,7 +262,7 @@ lenient validator accept the forged quantum-vulnerable signature.
 This does not apply if the lenient validator does not accept any
 quantum-vulnerable algorithms or if the zone is only signed by ML-DSA-44.
 A validator that insists on the presence of a valid ML-DSA-44 RRSIG
-when the availability is advertised in the zones DS, also evades the
+when the availability is advertised in the zones DS RRset, also evades the
 downgrade.
 
 # IANA Considerations
