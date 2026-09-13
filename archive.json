@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-10T04:19:07.274738+00:00",
+  "timestamp": "2026-09-13T04:30:12.134975+00:00",
   "repo": "bwesterb/draft-westerbaan-dnssec-mldsa",
   "labels": [
     {
@@ -50,5 +50,75 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOTeKy288AAAABDPrakA",
+      "title": "zone ds -> zone ds rrset",
+      "url": "https://github.com/bwesterb/draft-westerbaan-dnssec-mldsa/pull/1",
+      "state": "MERGED",
+      "author": "loganaden",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-09-12T10:05:40Z",
+      "updatedAt": "2026-09-12T11:40:29Z",
+      "baseRepository": "bwesterb/draft-westerbaan-dnssec-mldsa",
+      "baseRefName": "main",
+      "baseRefOid": "a3277c87d171e68ad1c951ce85f69b42565ff177",
+      "headRepository": "cyberstormdotmu/draft-westerbaan-dnssec-mldsa",
+      "headRefName": "loganaden-patch-zone_ds",
+      "headRefOid": "e1170a7066715714794e90d48050b85c7afae844",
+      "closedAt": "2026-09-12T11:40:29Z",
+      "mergedAt": "2026-09-12T11:40:29Z",
+      "mergedBy": "bwesterb",
+      "mergeCommit": {
+        "oid": "a07c4033582bc592036323d9e63fead322335a7b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOTeKy288AAAABDPwPJA",
+      "title": "Add length requirements for MLDSA44 in DNSSEC",
+      "url": "https://github.com/bwesterb/draft-westerbaan-dnssec-mldsa/pull/2",
+      "state": "OPEN",
+      "author": "loganaden",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-09-12T10:28:35Z",
+      "updatedAt": "2026-09-12T15:22:56Z",
+      "baseRepository": "bwesterb/draft-westerbaan-dnssec-mldsa",
+      "baseRefName": "main",
+      "baseRefOid": "a3277c87d171e68ad1c951ce85f69b42565ff177",
+      "headRepository": "cyberstormdotmu/draft-westerbaan-dnssec-mldsa",
+      "headRefName": "loganaden-patch-length_requirements",
+      "headRefOid": "d91a317290313ded5dc05d38f828af5081c9127c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bwesterb",
+          "authorAssociation": "OWNER",
+          "body": "This feels superfluous. Does repeating it here actually prevent people from making a plausible mistake?",
+          "createdAt": "2026-09-12T11:43:54Z",
+          "updatedAt": "2026-09-12T11:43:54Z"
+        },
+        {
+          "author": "loganaden",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@bwesterb  Agree with you. on 2nd reading, it may not be necessary.",
+          "createdAt": "2026-09-12T15:22:56Z",
+          "updatedAt": "2026-09-12T15:22:56Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
 }
