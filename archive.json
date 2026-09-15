@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-13T04:30:12.134975+00:00",
+  "timestamp": "2026-09-15T04:36:39.687466+00:00",
   "repo": "bwesterb/draft-westerbaan-dnssec-mldsa",
   "labels": [
     {
@@ -49,7 +49,24 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 3,
+      "id": "I_kwDOTeKy288AAAABRGUj0g",
+      "title": "Discuss transport layer issues",
+      "url": "https://github.com/bwesterb/draft-westerbaan-dnssec-mldsa/issues/3",
+      "state": "OPEN",
+      "author": "loganaden",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Would it be ok to suggest test about transport issues due to larger sizes with ML-DSA-44 ?\n\n",
+      "createdAt": "2026-09-13T20:01:35Z",
+      "updatedAt": "2026-09-13T20:01:35Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -84,21 +101,21 @@
       "id": "PR_kwDOTeKy288AAAABDPwPJA",
       "title": "Add length requirements for MLDSA44 in DNSSEC",
       "url": "https://github.com/bwesterb/draft-westerbaan-dnssec-mldsa/pull/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "loganaden",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-09-12T10:28:35Z",
-      "updatedAt": "2026-09-12T15:22:56Z",
+      "updatedAt": "2026-09-13T20:00:49Z",
       "baseRepository": "bwesterb/draft-westerbaan-dnssec-mldsa",
       "baseRefName": "main",
       "baseRefOid": "a3277c87d171e68ad1c951ce85f69b42565ff177",
       "headRepository": "cyberstormdotmu/draft-westerbaan-dnssec-mldsa",
       "headRefName": "loganaden-patch-length_requirements",
       "headRefOid": "d91a317290313ded5dc05d38f828af5081c9127c",
-      "closedAt": null,
+      "closedAt": "2026-09-13T20:00:48Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
